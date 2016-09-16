@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebsocketIo Test</title>
+
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+        socket.on('connect', function() {
+            socket.emit('my event', {data: 'Client connected!'});
+        });
+
+        var myVar;
+        function sendToServer() {
+            socket.emit('my event', {data: 'Button onClick'});
+        }
+
+        function startSending() {
+            myVar = setInterval(function(){ sendToServer() }, 3000);
+        }
+
+        function stopSending() {
+            clearInterval(myVar);
+        }
+
+    </script>
+
+</head>
+<body>
+
+<iframe width="640" height="360" src="https://www.youtube.com/embed/UVgoCTHvNJk" frameborder="0"
+        allowfullscreen></iframe>
+<br><br>
+<button onclick="sendToServer()">Click me</button>
+<button onclick="startSending()">Start send something to server</button>
+<button onclick="stopSending()">Stop send something to server</button>
+
+</body>
+</html>
