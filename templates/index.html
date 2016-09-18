@@ -26,6 +26,9 @@
             clearInterval(myVar);
         }
 
+        function sendGoCmd() {
+            socket.emit('car event', {data: 'go'});
+        }
     </script>
 
 </head>
@@ -37,6 +40,9 @@
 <button onclick="sendToServer()">Click me</button>
 <button onclick="startSending()">Start send something to server</button>
 <button onclick="stopSending()">Stop send something to server</button>
+</body>
+<br>
+<button onclick="sendGoCmd()">Go</button>
 
 </body>
 </html>
